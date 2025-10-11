@@ -12,9 +12,9 @@ def get_all_item():
         'iPhone 15 pro max'
     ]
     
-@router.get('/{product_id}')
-def get_product_by_id(product_id: Annotated[int, Path(ge=0, lt=[1_000_000])]):
-    return {
-        'id': product_id,
-        'product': 'product'
-    }
+# @router.get('/{product_id}')
+# def get_product_by_id(product_id: Annotated[int, Path(ge=0, lt=[1_000_000])]):
+#     return {
+#         'id': product_id,
+#         'product': 'product'
+#     }
