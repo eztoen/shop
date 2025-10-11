@@ -1,0 +1,24 @@
+[project]
+name = "shop"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Kucherenko Ivan (ikucheren0510@gmail.com)"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi (>=0.118.3,<0.119.0)",
+    "uvicorn[standart] (>=0.37.0,<0.38.0)"
+]
+
+[dependency-groups]
+dev = [
+    "pytest (>=8.4.2,<9.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
