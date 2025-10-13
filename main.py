@@ -4,7 +4,7 @@ import uvicorn
 
 from contextlib import asynccontextmanager
 
-from core.models import Base, async_engine, async_session_factory
+from core.models import Base, async_engine
 from products.views import router as products_router
 from users.views import router as users_router
 
