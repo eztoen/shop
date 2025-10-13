@@ -9,3 +9,5 @@ async def get_product(session: AsyncSession) -> list[Products]:
     products = result.scalars().all()
     return list(products)
 
+async def get_product_by_id(product_id: int, session: AsyncSession) -> Products | None:
+    return await session.get(Products, product_id)
