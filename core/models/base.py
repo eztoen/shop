@@ -1,5 +1,8 @@
+from asyncio import current_task
+
+from requests import session
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, declared_attr
-from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
+from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine, async_scoped_session
 
 from core.config import settings
 
@@ -20,3 +23,10 @@ async_engine = create_async_engine(
 )
 
 async_session_factory = async_sessionmaker(async_engine)
+
+scoped_session = async_scoped_session(
+    async_session_factory,
+    scopefunc=current_task
+)
+
+"FINISH SESSION DEPENDENCY"

@@ -5,7 +5,7 @@ from core.models import Products
 
 from .schemas import ProductSchema
 
-async def get_product(session: AsyncSession) -> list[Products]:
+async def get_products(session: AsyncSession) -> list[Products]:
     stmt = select(Products).order_by(Products.id)
     result: Result = await session.execute(stmt)
     products = result.scalars().all()

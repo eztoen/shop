@@ -1,16 +1,25 @@
-from fastapi import APIRouter, Path
+from fastapi import APIRouter, Path, HTTPException, status
 
-from typing import Annotated
+from . import crud
+from .schemas import ProductSchema, Product
 
-from products.schemas import ProductSchema
-from products import crud
+router = APIRouter(prefix='/products', tags=['Products'])
 
-router = APIRouter(prefix='/items', tags=['Products'])
+@router.get('/', response_model=list[Product])
+async def get_products(session):
+    return await crud.get_products(session=session)
 
-@router.post('/')
-def add_product(new_product: ProductSchema):
-    return crud.create_product(new_product)
+@router.get('/{product_id}', response_model=Product)
+async def get_product_by_id(product_id: int, session):
+    product = await crud.get_product_by_id(session=session, product_id=product_id)
+    if product is not None:
+        return product
     
-@router.get('/{product_id}/')
-def get_product_by_id(product_id: Annotated[int, Path(ge=0, lt=1_000_000)]):
-    return crud.get_product_by_id(product_id)
+    raise HTTPException(
+        status_code=status.HTTP_404_NOT_FOUND,
+        detail='Product not found :('
+    )
+
+@router.post('/', response_model=Product)
+async def create_product(session, new_product: ProductSchema):
+    return await crud,create_product(session=session, new_product=new_product)
