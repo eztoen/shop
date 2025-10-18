@@ -7,6 +7,7 @@ from contextlib import asynccontextmanager
 
 from core.models import Base, async_engine
 from users.views import router as users_router
+from products.views import router as products_router
 
 
 @asynccontextmanager
@@ -17,9 +18,8 @@ async def lifespan(app: FastAPI):
     yield
 
 app = FastAPI(lifespan=lifespan)
-app.include_router(products_router)
 app.include_router(users_router)
-
+app.include_router(products_router)
 
 
 if __name__ == '__main__':
