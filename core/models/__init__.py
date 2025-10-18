@@ -1,9 +1,8 @@
 __all__ = (
     'Base',
-    'async_engine',
-    'async_session_factory',
+    'db_helper'
     'Products'
 )
 
-from .base import Base, async_engine, async_session_factory
+from .base import Base, db_helper
 from .product import Products
