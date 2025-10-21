@@ -1,5 +1,10 @@
 from pydantic import BaseModel, EmailStr, Field
 
-class UserSchema(BaseModel):
-    username: str = Field(..., min_length=5, max_length=35)
-    email: EmailStr
+class User(BaseModel):
+    id: int
+    username: str
+    name: str
+    surname: str
+    
+class UserResponseModel(User):
+    pass

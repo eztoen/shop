@@ -1,10 +1,4 @@
-from asyncio import current_task
-
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, declared_attr
-from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine, async_scoped_session
-
-from core.config import settings
-
 
 class Base(DeclarativeBase):
     __abstract__ = True

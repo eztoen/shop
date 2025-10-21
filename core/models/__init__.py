@@ -3,8 +3,10 @@ __all__ = (
     "DatabaseHelper",
     "db_helper",
     "Products",
+    'Users'
 )
 
 from .base import Base
 from .db_helper import DatabaseHelper, db_helper
 from .product import Products
+from .user import Users

@@ -1,7 +1,13 @@
-from users.schemas import UserSchema
+from sqlalchemy import select
+from sqlalchemy.engine import Result
+from sqlalchemy.ext.asyncio import AsyncSession
+from core.models import Users
 
-def get_users():
-    ...
+async def get_users(session: AsyncSession) -> list[Users]:
+    stmt = select(Users).order_by(Users.id)
+    result: Result = await session.execute(stmt)
+    users = result.scalars().all()
+    return list(users)
 
-def create_user(new_user: UserSchema) -> dict:
-    return {'success': True, 'hello': new_user.username}
+async def get_user_by_id(session: AsyncSession, user_id: int) -> Users | None:
+    return await session.get(Users, user_id)
